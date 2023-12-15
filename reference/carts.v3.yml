@@ -133,15 +133,15 @@ paths:
                       product_id: 118
                       list_price: 30
                       name: shirt
-                      options:
-                        - name: Size
-                          nameId: 125
-                          value: Large
-                          valueId: 127
+                      option_selections:
+                        - name: Color
+                          value: Red
+                          option_id: 133
+                          option_value: 149
                         - name: Add a $5 Donation
-                          nameId: 126
-                          value: 'No'
-                          valueId: 129
+                          value: No
+                          option_id: 126
+                          option_value: 129
                   channel_id: 1
                   currency:
                     code: AUD
@@ -163,7 +163,7 @@ paths:
                             message: Happy Birthday
                   gift_certificates:
                     - name: Tobi Day
-                      theme: Birthday
+                      theme: birthday.html
                       amount: 1
                       quantity: 1
                       sender:
@@ -322,7 +322,7 @@ paths:
                           option_value: 'Yes'
                   gift_certificates:
                     - name: Happy Birthday
-                      theme: Birthday
+                      theme: birthday.html
                       amount: 50
                       quantity: 1
                       sender:
@@ -511,7 +511,7 @@ paths:
                         gift_certificates:
                           - id: 6e38bbc2-8873-472c-a452-8bd4aaea5d3a
                             name: Happy Birthday
-                            theme: Birthday
+                            theme: birthday.html
                             amount: 50
                             quantity: 1
                             taxable: false
@@ -1014,12 +1014,12 @@ components:
               type: string
               description: The theme of the gift certificate.
               enum:
-                - Birthday
-                - Boy
-                - Celebration
-                - Christmas
-                - General
-                - Girl
+                - birthday.html
+                - boy.html
+                - celebration.html
+                - christmas.html
+                - general.html
+                - girl.html
             amount:
               type: number
               minimum: 1
@@ -1078,12 +1078,12 @@ components:
                 type: string
                 description: The theme of the gift certificate.
                 enum:
-                  - Birthday
-                  - Boy
-                  - Celebration
-                  - Christmas
-                  - General
-                  - Girl
+                  - birthday.html
+                  - boy.html
+                  - celebration.html
+                  - christmas.html
+                  - general.html
+                  - girl.html
               amount:
                 type: number
                 minimum: 1
@@ -1181,12 +1181,12 @@ components:
                 type: string
                 description: The theme of the gift certificate.
                 enum:
-                  - Birthday
-                  - Boy
-                  - Celebration
-                  - Christmas
-                  - General
-                  - Girl
+                  - birthday.html
+                  - boy.html
+                  - celebration.html
+                  - christmas.html
+                  - general.html
+                  - girl.html
               amount:
                 type: number
                 minimum: 1
@@ -1286,12 +1286,12 @@ components:
           type: string
           description: The theme of the gift certificate.
           enum:
-            - Birthday
-            - Boy
-            - Celebration
-            - Christmas
-            - General
-            - Girl
+            - birthday.html
+            - boy.html
+            - celebration.html
+            - christmas.html
+            - general.html
+            - girl.html
         amount:
           type: number
           minimum: 1
@@ -1484,12 +1484,12 @@ components:
           type: string
           description: The theme of the gift certificate.
           enum:
-            - Birthday
-            - Boy
-            - Celebration
-            - Christmas
-            - General
-            - Girl
+            - birthday.html
+            - boy.html
+            - celebration.html
+            - christmas.html
+            - general.html
+            - girl.html
         amount:
           type: number
           description: 'Value must be between 1.00 and 1,000.00 in the store’s default currency.'
@@ -1528,7 +1528,7 @@ components:
           description: Name provided for the gift certificate that will appear in the control panel.
         theme:
           type: string
-          description: 'The theme of the gift certificate. The following options are available:`Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
+          description: 'The theme of the gift certificate. The following options are available:`birthday.html`, `boy.html`, `celebration.html`, `christmas.html`, `general.html`, and `girl.html`.'
         amount:
           type: number
           description: 'Value must be between 1.00 and 1,000.00 in the store’s default currency.'
@@ -2546,12 +2546,12 @@ components:
                 type: string
                 description: The theme of the gift certificate.
                 enum:
-                  - Birthday
-                  - Boy
-                  - Celebration
-                  - Christmas
-                  - General
-                  - Girl
+                  - birthday.html
+                  - boy.html
+                  - celebration.html
+                  - christmas.html
+                  - general.html
+                  - girl.html
               amount:
                 type: number
                 minimum: 1
@@ -2613,12 +2613,12 @@ components:
                 type: string
                 description: The theme of the gift certificate.
                 enum:
-                  - Birthday
-                  - Boy
-                  - Celebration
-                  - Christmas
-                  - General
-                  - Girl
+                  - birthday.html
+                  - boy.html
+                  - celebration.html
+                  - christmas.html
+                  - general.html
+                  - girl.html
               amount:
                 type: number
                 minimum: 1
@@ -2938,15 +2938,20 @@ components:
                     type: string
                     description: 'The product option name; for example, Color or Size.'
                   nameId:
-                    type: number
+                    type: number 
+                    example: 151
                     description: The product option identifier.
                   value:
                     type: string
                     description: 'The product option value; for example, Red or Medium.'
                   valueId:
-                    type: number
+                    oneOf:
+                      - type: number
+                        example: 128
+                      - type: string
+                        example: "1259"
                     description: The product option value identifier in number format.
-                    example: 128
+                    
             gift_wrapping:
               description: The gift wrapping details for this item.
               type: object
@@ -3154,9 +3159,7 @@ components:
         Response payload for the BigCommerce API.
       properties:
         data:
-          type: object
-          items:
-            $ref: '#/components/schemas/Metafield'
+          $ref: '#/components/schemas/Metafield'
         meta:
           $ref: '#/components/schemas/CollectionMeta'
       x-internal: false

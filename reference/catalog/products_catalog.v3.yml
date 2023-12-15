@@ -8335,6 +8335,7 @@ components:
           type: integer
           description: |
             The number of times the product has been viewed.
+          deprecated: true
         preorder_release_date:
           type: string
           description: |
